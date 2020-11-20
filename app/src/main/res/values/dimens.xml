@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--padding-->
+    <dimen name="padding_general_two">2dp</dimen>
+    <dimen name="padding_general_half">5dp</dimen>
+    <dimen name="padding_general_eight">8dp</dimen>
+    <dimen name="padding_general">10dp</dimen>
+    <dimen name="padding_general_fifteen">15dp</dimen>
+    <dimen name="padding_general_double">20dp</dimen>
+    <dimen name="padding_general_twenty_five">25dp</dimen>
+    <dimen name="padding_general_tripple">30dp</dimen>
+    <dimen name="padding_general_thirty_five">35dp</dimen>
+    <dimen name="padding_general_fourty">40dp</dimen>
+    <dimen name="padding_general_fifty">50dp</dimen>
+    <dimen name="padding_general_sixty">60dp</dimen>
+    <dimen name="padding_general_minus">-10dp</dimen>
+    <dimen name="padding_general_half_minus">-5dp</dimen>
+    <dimen name="padding_general_double_minus">-20dp</dimen>
+    <dimen name="padding_general_tripple_minus">-30dp</dimen>
+
+    <!--margin-->
+    <dimen name="margin_general_one">1dp</dimen>
+    <dimen name="margin_general_three">3dp</dimen>
+    <dimen name="margin_general">10dp</dimen>
+    <dimen name="margin_general_fifteen">15dp</dimen>
+    <dimen name="margin_general_double">20dp</dimen>
+    <dimen name="margin_general_twentry_five">25dp</dimen>
+    <dimen name="margin_general_tripple">30dp</dimen>
+    <dimen name="margin_general_thirty_five">35dp</dimen>
+    <dimen name="margin_general_fourty">40dp</dimen>
+    <dimen name="margin_general_fourty_five">45dp</dimen>
+    <dimen name="margin_general_half">5dp</dimen>
+    <dimen name="margin_general_fifty">50dp</dimen>
+    <dimen name="margin_general_fifty_five">55dp</dimen>
+    <dimen name="margin_general_sixty">60dp</dimen>
+    <dimen name="margin_general_eighty">80dp</dimen>
+    <dimen name="margin_general_hundred">100dp</dimen>
+    <dimen name="margin_general_hundred_fifty">150dp</dimen>
+    <dimen name="margin_general_hundred_sixty_five">165dp</dimen>
+    <dimen name="margin_general_hundred_seventy">170dp</dimen>
+
+
+    <dimen name="toolbar_height">44dp</dimen>
+    <dimen name="margin_general_two_hundred">200dp</dimen>
+    <dimen name="padding_general_eighty">80dp</dimen>
+    <dimen name="margin_general_one_thirty">130dp</dimen>
+    <dimen name="travellers_btn_size">30dp</dimen>
+    <dimen name="margin_general_twenty_two">22dp</dimen>
+    <dimen name="margin_general_two">2dp</dimen>
+    <dimen name="package_landing_icon_size">250dp</dimen>
+
+    <!--font sizes-->
+    <dimen name="font_size_ten">10sp</dimen>
+    <dimen name="font_size_eleven">11sp</dimen>
+    <dimen name="font_size_tweleve">12sp</dimen>
+    <dimen name="font_size_thirteen">13sp</dimen>
+    <dimen name="font_size_fourteen">14sp</dimen>
+    <dimen name="font_size_fifteen">15sp</dimen>
+    <dimen name="font_size_sixteen">16sp</dimen>
+    <dimen name="font_size_seventeen">17sp</dimen>
+    <dimen name="font_size_eighteen">18sp</dimen>
+    <dimen name="font_size_nineteen">19sp</dimen>
+    <dimen name="font_size_twenty">20sp</dimen>
+    <dimen name="font_size_twenty_two">22sp</dimen>
+    <dimen name="font_size_twenty_five">25sp</dimen>
+    <dimen name="font_size_twenty_eight">28sp</dimen>
+    <dimen name="font_size_thirty_five">35sp</dimen>
+    <dimen name="font_size_fourty">40sp</dimen>
+
+</resources>

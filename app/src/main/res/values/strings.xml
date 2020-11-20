@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Dialer</string>
+    <string name="title_ok">OK</string>
+    <string name="title_log_in">Log in</string>
+    <string name="title_pwd">Password</string>
+    <string name="title_e_mail">E-mail</string>
+    <string name="title_username">Username</string>
+    <string name="title_log_out">Log out</string>
+    <string name="title_call_logs">Call logs</string>
+    <string name="title_auto_call">Auto call</string>
+    <string name="alert_signout">Do you really want to logout?</string>
+    <string name="title_confirm">Confirm</string>
+    <string name="title_cancel">Cancel</string>
+    <string name="title_sms">SMS</string>
+    <string name="title_email">EMAIL</string>
+    <string name="title_additional_remark">Additional Remark</string>
+    <string name="title_submit_remark">Submit Remark</string>
+    <string name="title_task">Task</string>
+    <string name="title_send_email">Send Email</string>
+    <string name="title_email_address">Email address:</string>
+    <string name="title_enter_email">Enter email</string>
+</resources>
