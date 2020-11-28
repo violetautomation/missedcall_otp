@@ -13,13 +13,13 @@ import kotlinx.android.synthetic.main.remarks_list_item.view.*
 
 
 class RemarksAdapter(val context: Context) :
-    RecyclerView.Adapter<RemarksAdapter.PropertyListAdapterViewHolder>() {
+    RecyclerView.Adapter<RemarksAdapter.RemarksAdapterViewHolder>() {
 
     var listItems = ArrayList<RemarksModel>()
     var onItemClick: ((RemarksModel) -> Unit)? =
         null
 
-    class PropertyListAdapterViewHolder(val view: View) : RecyclerView.ViewHolder(view),
+    class RemarksAdapterViewHolder(val view: View) : RecyclerView.ViewHolder(view),
         LayoutContainer {
         override val containerView: View
             get() = view
@@ -30,8 +30,8 @@ class RemarksAdapter(val context: Context) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): PropertyListAdapterViewHolder {
-        return PropertyListAdapterViewHolder(
+    ): RemarksAdapterViewHolder {
+        return RemarksAdapterViewHolder(
             LayoutInflater.from(context).inflate(
                 R.layout.remarks_list_item,
                 parent,
@@ -40,7 +40,7 @@ class RemarksAdapter(val context: Context) :
         )
     }
 
-    override fun onBindViewHolder(holder: PropertyListAdapterViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RemarksAdapterViewHolder, position: Int) {
         val model = listItems[position]
 
         holder.mCheckBox.text = model.remark

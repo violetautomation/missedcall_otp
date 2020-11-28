@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.viol8.stgvirtual.basemodules.BaseViewModel
 import com.viol8.stgvirtual.model.LeadResponse
 import com.viol8.stgvirtual.model.MessageResponse
+import com.viol8.stgvirtual.model.ReportResponse
 import com.viol8.stgvirtual.repositories.HomeRepository
 
 
@@ -14,6 +15,8 @@ class HomeViewModel(val repo: HomeRepository) : BaseViewModel() {
     val sendSmsLiveData = MutableLiveData<Triple<Boolean, MessageResponse, String?>>()
     val sendEmailLiveData = MutableLiveData<Triple<Boolean, MessageResponse, String?>>()
     val submitRemarksLiveData = MutableLiveData<Triple<Boolean, MessageResponse, String?>>()
+    val insertCallDetailLiveData = MutableLiveData<Triple<Boolean, MessageResponse, String?>>()
+    val getReportLiveData = MutableLiveData<Triple<Boolean, ArrayList<ReportResponse>, String?>>()
 
     fun getLeadApiWebCall(userId: String?) {
         repo.getLeadApiWebCall(userId, true, {
@@ -62,6 +65,26 @@ class HomeViewModel(val repo: HomeRepository) : BaseViewModel() {
             submitRemarksLiveData.postValue(Triple(true, it, null))
         }, {
             submitRemarksLiveData.postValue(Triple(false, MessageResponse(), it))
+        })
+    }
+
+    fun insertCallDetailApiWebCall(map: HashMap<String, Any?>) {
+        repo.insertCallDetailApiWebCall(map, false, {
+            mProgressBar.postValue(it)
+        }, {
+            insertCallDetailLiveData.postValue(Triple(true, it, null))
+        }, {
+            insertCallDetailLiveData.postValue(Triple(false, MessageResponse(), it))
+        })
+    }
+
+    fun getReportApiWebCall(userId: String?) {
+        repo.getReportApiWebCall(userId, true, {
+            mProgressBar.postValue(it)
+        }, {
+            getReportLiveData.postValue(Triple(true, it, null))
+        }, {
+            getReportLiveData.postValue(Triple(false, ArrayList(), it))
         })
     }
 }

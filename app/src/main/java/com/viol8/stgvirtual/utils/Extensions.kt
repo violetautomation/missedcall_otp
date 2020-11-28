@@ -274,14 +274,14 @@ fun <T> LiveData<T>.debounce(duration: Long = 1000L) = MediatorLiveData<T>().als
 }
 
 
-fun Activity.isStoragePermissionGranted(requestCode: Int): Boolean {
+fun Activity.isReadLogPermissionGranted(requestCode: Int): Boolean {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+        if (checkSelfPermission(Manifest.permission.READ_CALL_LOG) == PackageManager.PERMISSION_GRANTED) {
             Log.v(this::class.java.name, "Permission is granted")
             return true
         } else {
             Log.v(this::class.java.name, "Permission is revoked")
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), requestCode)
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_CALL_LOG), requestCode)
             return false
         }
     } else { //permission is automatically granted on sdk<23 upon installation

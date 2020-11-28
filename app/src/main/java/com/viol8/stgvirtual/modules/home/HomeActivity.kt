@@ -1,6 +1,7 @@
 package com.viol8.stgvirtual.modules.home
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,7 @@ import com.viol8.stgvirtual.model.LeadResponse
 import com.viol8.stgvirtual.modules.home.viewmodel.HomeViewModel
 import com.viol8.stgvirtual.progressbar.ProgressBarHandler
 import com.viol8.stgvirtual.utils.UserUtils
+import com.viol8.stgvirtual.utils.isReadLogPermissionGranted
 import com.viol8.stgvirtual.utils.preventDoubleClick
 import com.viol8.stgvirtual.utils.snackbar
 import kotlinx.android.synthetic.main.activity_home.*
@@ -49,26 +51,14 @@ class HomeActivity : AppCompatActivity() {
                 "sign_out_dialog_fragment"
             )
         }
+        callLogs.setOnClickListener {
+            it.preventDoubleClick()
+            startActivity(Intent(this, ReportActivity::class.java))
+        }
         leadCallBtn.setOnClickListener {
             it.preventDoubleClick()
-            leadInfo?.leadNo?.let {
-                val map = HashMap<String, Any?>()
-                map[Constants.LEAD_NO] = leadInfo?.leadNo
-                map[Constants.ID] = leadInfo?.leadId
-                UserUtils.getUserData(this)?.let {
-                    map[Constants.USER_ID] = it.userid
-                }
-                mHomeViewModel.callAgentApiWebCall(map)
-
-                val intent = Intent(this, RemarksActivity::class.java)
-                intent.putExtra(Constants.BUNDLE_DATA, Gson().toJson(leadInfo))
-                startActivity(intent)
-                ////////////////////////////////
-                val actionIntent = Intent(Intent.ACTION_DIAL)
-                actionIntent.data = Uri.parse("tel:${it}")
-                startActivity(actionIntent)
-            } ?: kotlin.run {
-                snackbar("No data found!")
+            if (isReadLogPermissionGranted(26)) {
+                openRemarksScreen()
             }
         }
     }
@@ -87,5 +77,45 @@ class HomeActivity : AppCompatActivity() {
                 it.third?.let { it1 -> snackbar(it1) }
             }
         })
+    }
+
+    private fun openRemarksScreen() {
+        leadInfo?.leadNo?.let {
+            val map = HashMap<String, Any?>()
+            map[Constants.LEAD_NO] = leadInfo?.leadNo
+            map[Constants.ID] = leadInfo?.leadId
+            UserUtils.getUserData(this)?.let {
+                map[Constants.USER_ID] = it.userid
+            }
+            mHomeViewModel.callAgentApiWebCall(map)
+
+            val intent = Intent(this, RemarksActivity::class.java)
+            intent.putExtra(Constants.BUNDLE_DATA, Gson().toJson(leadInfo))
+            startActivity(intent)
+            ////////////////////////////////
+            val actionIntent = Intent(Intent.ACTION_DIAL)
+            actionIntent.data = Uri.parse("tel:${it}")
+            startActivity(actionIntent)
+        } ?: kotlin.run {
+            snackbar("No data found!")
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            26 -> {
+                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    //open screen
+                    openRemarksScreen()
+                } else {
+                    // Permission Denied.
+                }
+            }
+        }
     }
 }

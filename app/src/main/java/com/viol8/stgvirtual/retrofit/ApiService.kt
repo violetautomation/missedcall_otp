@@ -18,7 +18,7 @@ interface ApiService {
     fun login(@Body bodyParams: HashMap<String, Any?>): Deferred<Response<ResponseBody>>
 
     @GET("app/leads/{userId}")
-    fun getLead(@Path("userId") campId: String?): Deferred<Response<ResponseBody>>
+    fun getLead(@Path("userId") userId: String?): Deferred<Response<ResponseBody>>
 
     @POST("app/lead")
     fun callAgent(@Body bodyParams: HashMap<String, Any?>): Deferred<Response<ResponseBody>>
@@ -31,4 +31,10 @@ interface ApiService {
 
     @POST("app/calldispose")
     fun submitRemark(@Body bodyParams: HashMap<String, Any?>): Deferred<Response<ResponseBody>>
+
+    @POST("app/agent/report")
+    fun insertCallDetail(@Body bodyParams: HashMap<String, Any?>): Deferred<Response<ResponseBody>>
+
+    @GET("app/agent/report/{userId}")
+    fun getReport(@Path("userId") userId: String?): Deferred<Response<ResponseBody>>
 }

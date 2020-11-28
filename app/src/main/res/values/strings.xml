@@ -19,4 +19,6 @@
     <string name="title_send_email">Send Email</string>
     <string name="title_email_address">Email address:</string>
     <string name="title_enter_email">Enter email</string>
+    <string name="title_no_data_found">No data found!</string>
+    <string name="title_report">Report</string>
 </resources>

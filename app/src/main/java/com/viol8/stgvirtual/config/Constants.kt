@@ -12,4 +12,7 @@ object Constants {
     val EMAIL_ID = "emailId"
     val ADDITIONAL_REMARKS = "additionalRemarks"
     val REMARKS = "remarks"
+    val CUSTOMER_NO = "customerNo"
+    val LEAD_TALK_DURATION = "leadTalkDuration"
+    val START_TIME = "startTime"
 }

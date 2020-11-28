@@ -2,8 +2,11 @@ package com.viol8.stgvirtual.modules.home
 
 import android.content.ComponentName
 import android.content.Intent
+import android.database.Cursor
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.provider.CallLog
 import android.telephony.PhoneNumberUtils
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +25,11 @@ import com.viol8.stgvirtual.progressbar.ProgressBarHandler
 import com.viol8.stgvirtual.utils.*
 import kotlinx.android.synthetic.main.activity_remarks.*
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.lang.Long
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 
 class RemarksActivity : AppCompatActivity() {
@@ -206,5 +214,55 @@ class RemarksActivity : AppCompatActivity() {
                 it.third?.let { it1 -> snackbar(it1) }
             }
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getLastNumber()
+    }
+
+    private fun getLastNumber() {
+        //this help you to get recent call
+        val contacts: Uri = CallLog.Calls.CONTENT_URI
+        val managedCursor: Cursor? = getContentResolver().query(
+            contacts, null, null,
+            null, CallLog.Calls.DATE + " DESC limit 1;"
+        )
+        managedCursor?.let {
+            val number: Int = managedCursor.getColumnIndex(CallLog.Calls.NUMBER)
+            val type: Int = managedCursor.getColumnIndex(CallLog.Calls.TYPE)
+            val date: Int = managedCursor.getColumnIndex(CallLog.Calls.DATE)
+            val duration: Int = managedCursor.getColumnIndex(CallLog.Calls.DURATION)
+            val sb = StringBuffer()
+            managedCursor.moveToNext()
+            val phNumber: String = managedCursor.getString(number)
+            val callType: String = managedCursor.getString(type)
+            val callDate: String = managedCursor.getString(date)
+            //   val callDayTime = Date(java.lang.Long.valueOf(callDate)).toString()
+            val callDayTime = SimpleDateFormat(":yyyy-mm-dd hh:mm:ss").format(
+                Date(
+                    Long.valueOf(
+                        callDate
+                    )
+                )
+            )
+            val callDuration: Int = managedCursor.getInt(duration)
+            managedCursor.close()
+            val dircode = callType.toInt()
+            if (CallLog.Calls.OUTGOING_TYPE == dircode) {
+                leadInfo?.let {
+                    if (it.leadNo == phNumber || phNumber.contains(it.leadNo.toString())) {
+                        val map = HashMap<String, Any?>()
+                        UserUtils.getUserData(this)?.let {
+                            map[Constants.USER_ID] = it.userid
+                        }
+                        map[Constants.CUSTOMER_NO] = phNumber
+                        map[Constants.LEAD_TALK_DURATION] = callDuration
+                        map[Constants.START_TIME] = callDayTime
+                        mHomeViewModel.insertCallDetailApiWebCall(map)
+                    }
+                }
+            }
+        }
     }
 }
