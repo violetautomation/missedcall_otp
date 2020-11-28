@@ -1,6 +1,8 @@
 package com.viol8.stgvirtual.modules.home
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -46,6 +48,20 @@ class ReportActivity : AppCompatActivity() {
             it.preventDoubleClick()
             finish()
         }
+        reportSearchBar.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+//                if (mLocationAdapter != null) mLocationAdapter?.filter?.filter(s)
+                mReportssAdapter?.let {
+                    it.filter.filter(s)
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+        })
     }
 
     fun setupReportsAdapter(list: ArrayList<ReportResponse>) {
@@ -65,6 +81,7 @@ class ReportActivity : AppCompatActivity() {
 
             }
         }
+        // Collections.sort(list, ReportNumberComparator())
         mReportssAdapter?.setItems(list)
     }
 

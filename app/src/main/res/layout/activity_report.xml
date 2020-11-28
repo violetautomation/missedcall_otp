@@ -8,15 +8,20 @@
         android:id="@+id/reportBackbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_general"
+        android:layout_marginStart="@dimen/margin_general"
+        android:layout_marginTop="@dimen/margin_general_double"
         android:src="@drawable/ic_chevron_left" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/reportSearchBar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_marginStart="@dimen/margin_general"
         android:layout_marginTop="@dimen/margin_general"
-        android:text="@string/title_report"
+        android:layout_marginEnd="@dimen/margin_general"
+        android:layout_toEndOf="@+id/reportBackbtn"
+        android:hint="Search customer no..."
         android:textColor="@color/black"
         android:textSize="@dimen/font_size_eighteen" />
 

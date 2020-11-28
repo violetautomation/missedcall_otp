@@ -4,6 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.viol8.stgvirtual.R
 import com.viol8.stgvirtual.model.ReportResponse
@@ -12,11 +14,14 @@ import kotlinx.android.synthetic.main.reports_list_item.view.*
 
 
 class ReportsAdapter(val context: Context) :
-    RecyclerView.Adapter<ReportsAdapter.ReportsAdapterViewHolder>() {
+    RecyclerView.Adapter<ReportsAdapter.ReportsAdapterViewHolder>(), Filterable {
 
     var listItems = ArrayList<ReportResponse>()
     var onItemClick: ((ReportResponse) -> Unit)? =
         null
+
+    private var mArrayList = ArrayList<ReportResponse>()
+    private var mFilteredList = ArrayList<ReportResponse>()
 
     class ReportsAdapterViewHolder(val view: View) : RecyclerView.ViewHolder(view),
         LayoutContainer {
@@ -58,5 +63,40 @@ class ReportsAdapter(val context: Context) :
 
     override fun getItemCount(): Int {
         return listItems.size
+    }
+
+    override fun getFilter(): Filter {
+        if (mArrayList.isEmpty()) {
+            mArrayList = listItems
+        }
+        return object : Filter() {
+            override fun performFiltering(charSequence: CharSequence): Filter.FilterResults {
+                val charString = charSequence.toString()
+                if (charString.isEmpty()) {
+                    mFilteredList = mArrayList
+                } else {
+                    val filteredList = ArrayList<ReportResponse>()
+
+                    for (locationModel in mArrayList) {
+                        if (locationModel.customerNo!!.toLowerCase().contains(charString)) {
+                            filteredList.add(locationModel)
+                        }
+                    }
+                    mFilteredList = filteredList
+                }
+                val filterResults = Filter.FilterResults()
+                filterResults.values = mFilteredList
+                return filterResults
+            }
+
+            override fun publishResults(
+                charSequence: CharSequence,
+                filterResults: Filter.FilterResults
+            ) {
+                mFilteredList = filterResults.values as ArrayList<ReportResponse>
+                listItems = mFilteredList
+                notifyDataSetChanged()
+            }
+        }
     }
 }

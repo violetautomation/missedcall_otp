@@ -34,13 +34,14 @@
 
         <TextView
             android:id="@+id/leadCallBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:layout_marginStart="@dimen/margin_general"
             android:layout_marginTop="@dimen/margin_general_double"
-            android:layout_marginEnd="@dimen/margin_general_double"
+            android:layout_marginEnd="@dimen/margin_general"
             android:drawablePadding="@dimen/padding_general"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:textColor="@color/black"
             android:textSize="@dimen/font_size_twenty"
             app:drawableEndCompat="@drawable/ic_telephone" />
@@ -80,6 +81,7 @@
                 android:text="@string/title_auto_call"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_size_tweleve"
+                android:visibility="gone"
                 app:drawableTopCompat="@drawable/ic_clock" />
 
             <TextView
@@ -91,6 +93,7 @@
                 android:text="@string/title_task"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_size_tweleve"
+                android:visibility="gone"
                 app:drawableTopCompat="@drawable/ic_notification" />
 
             <TextView
