@@ -41,7 +41,7 @@ android {
 
 dependencies {
 //    implementation project(':flash')
-    implementation 'com.github.rajwindersing:flash:0.1.2'
+    implementation 'com.github.vikramarora85:missedcall_otp:0.1.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
