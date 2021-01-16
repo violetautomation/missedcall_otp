@@ -60,7 +60,7 @@ class HomeActivity : AppCompatActivity()
         ServiceData.callAlert(
             countryCode.text.toString().trim(),
             mobile.text.toString().trim()
-        ) //country code +91, mobile any valid 10 digit number
+        ) //country code like 91, mobile any valid 10 digit number
     }
 
     private val onNotice: BroadcastReceiver = object : BroadcastReceiver() {
