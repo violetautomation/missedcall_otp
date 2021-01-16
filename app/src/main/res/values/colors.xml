@@ -3,20 +3,6 @@
     <color name="colorPrimary">#4285F4</color>
     <color name="colorPrimaryDark">#4285F4</color>
     <color name="colorAccent">#4285F4</color>
-    <color name="colorPrimaryRipple">#424285F4</color>
-    <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="white_cream">#F8F7F9</color>
     <color name="app_background">#E8E8E8</color>
-    <color name="app_font_color">#56585b</color>
-    <color name="loadmore_footer_color">#284F9E</color>
-    <color name="silver">#A9A9A9</color>
-    <color name="light_silver">#D3D3D3</color>
-    <color name="grey">#808080</color>
-    <color name="grey_light">#D5D5D5</color>
-    <color name="grey_light_bg">#F4F4F4</color>
-    <color name="app_yellow_color">#F0CC27</color>
-
-    <color name="gray_transparent">#42cbcbcb</color>
-    <color name="colorPrimaryTransparent">#80284F9E</color>
 </resources>

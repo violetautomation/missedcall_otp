@@ -1,2 +1,3 @@
+include ':flash'
 include ':app'
-rootProject.name = "Dialer"
+rootProject.name = "Flash"

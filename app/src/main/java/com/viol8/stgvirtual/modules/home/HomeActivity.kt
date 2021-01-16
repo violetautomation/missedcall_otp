@@ -1,103 +1,66 @@
 package com.viol8.stgvirtual.modules.home
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import com.google.gson.Gson
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.viol8.flash.config.Constants
+import com.viol8.flash.data.ServiceData
+import com.viol8.flash.isReadLogStetePermissionGranted
+import com.viol8.flash.preventDoubleClick
 import com.viol8.stgvirtual.R
-import com.viol8.stgvirtual.bottomsheet.SignOutBottomDialogFragment
-import com.viol8.stgvirtual.config.Constants
-import com.viol8.stgvirtual.model.LeadResponse
-import com.viol8.stgvirtual.modules.home.viewmodel.HomeViewModel
-import com.viol8.stgvirtual.progressbar.ProgressBarHandler
-import com.viol8.stgvirtual.utils.UserUtils
-import com.viol8.stgvirtual.utils.isReadLogPermissionGranted
-import com.viol8.stgvirtual.utils.preventDoubleClick
-import com.viol8.stgvirtual.utils.snackbar
 import kotlinx.android.synthetic.main.activity_home.*
-import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class HomeActivity : AppCompatActivity() {
-    private val mHomeViewModel: HomeViewModel by viewModel()
-    private lateinit var mProgressView: ProgressBarHandler
-    private var leadInfo: LeadResponse? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        mProgressView = ProgressBarHandler(this)
-        initObserver()
         initView()
         initListener()
-        UserUtils.getUserData(this)?.userid?.let {
-            mHomeViewModel.getLeadApiWebCall(it)
-        }
     }
 
     private fun initView() {
+        val localBroadcastManager = LocalBroadcastManager.getInstance(this)
+        localBroadcastManager.registerReceiver(
+            onNotice,
+            IntentFilter(Constants.FLASH_BROADCAST_ACTION)
+        )
     }
 
     private fun initListener() {
-        logoutBtn.setOnClickListener {
+        verify.setOnClickListener {
             it.preventDoubleClick()
-            val dialogFragment = SignOutBottomDialogFragment.newInstance()
-            dialogFragment.show(
-                supportFragmentManager,
-                "sign_out_dialog_fragment"
-            )
-        }
-        callLogs.setOnClickListener {
-            it.preventDoubleClick()
-            startActivity(Intent(this, ReportActivity::class.java))
-        }
-        leadCallBtn.setOnClickListener {
-            it.preventDoubleClick()
-            if (isReadLogPermissionGranted(26)) {
-                openRemarksScreen()
+            if (isReadLogStetePermissionGranted(26)) {
+                missCallAlert()
             }
         }
     }
 
-    private fun initObserver() {
-        mHomeViewModel.mProgressBar.observe(this, Observer {
-            mProgressView.showOrHide(it)
-        })
-        mHomeViewModel.leadsLiveData.observe(this, Observer {
-            if (it.first) {
-                leadInfo = it.second
-                leadInfo?.let {
-                    leadCallBtn.text = it.leadNo
+    private fun missCallAlert() {
+        ServiceData.callAlert(
+            countryCode.text.toString().trim(),
+            mobile.text.toString().trim()
+        ) //country code +91, mobile any valid 10 digit number
+    }
+
+    private val onNotice: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            ServiceData.verifyCall {
+                if (it) {
+                    runOnUiThread {
+                        Toast.makeText(this@HomeActivity, "Number Verified!", Toast.LENGTH_SHORT)
+                            .show()
+                    }
                 }
-            } else {
-                it.third?.let { it1 -> snackbar(it1) }
             }
-        })
-    }
-
-    private fun openRemarksScreen() {
-        leadInfo?.leadNo?.let {
-            val map = HashMap<String, Any?>()
-            map[Constants.LEAD_NO] = leadInfo?.leadNo
-            map[Constants.ID] = leadInfo?.leadId
-            UserUtils.getUserData(this)?.let {
-                map[Constants.USER_ID] = it.userid
-            }
-            mHomeViewModel.callAgentApiWebCall(map)
-
-            val intent = Intent(this, RemarksActivity::class.java)
-            intent.putExtra(Constants.BUNDLE_DATA, Gson().toJson(leadInfo))
-            startActivity(intent)
-            ////////////////////////////////
-            val actionIntent = Intent(Intent.ACTION_DIAL)
-            actionIntent.data = Uri.parse("tel:${it}")
-            startActivity(actionIntent)
-        } ?: kotlin.run {
-            snackbar("No data found!")
         }
     }
 
@@ -111,11 +74,16 @@ class HomeActivity : AppCompatActivity() {
             26 -> {
                 if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     //open screen
-                    openRemarksScreen()
+                    missCallAlert()
                 } else {
                     // Permission Denied.
                 }
             }
         }
+    }
+
+    override fun onDestroy() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(onNotice)
+        super.onDestroy()
     }
 }

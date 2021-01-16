@@ -1,115 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
-    android:orientation="vertical">
+    android:background="@color/app_background"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_general">
+
+    <EditText
+        android:id="@+id/countryCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/country_code"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/mobile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_general_double"
+        android:hint="@string/mobile_number"
+        android:inputType="number" />
 
     <TextView
-        android:id="@+id/titleHome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="@string/app_name"
-        android:textColor="@color/white"
-        android:textSize="@dimen/font_size_twenty_five" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/titleHome"
-        android:layout_marginTop="@dimen/margin_general_hundred"
-        android:background="@color/app_background" />
-
-    <RelativeLayout
+        android:id="@+id/verify"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/titleHome"
-        android:layout_marginStart="@dimen/margin_general_double"
-        android:layout_marginTop="@dimen/margin_general_tripple"
-        android:layout_marginEnd="@dimen/margin_general_double"
-        android:background="@drawable/rectangle_rounded_white"
-        android:padding="@dimen/padding_general">
+        android:layout_marginTop="@dimen/margin_general_double"
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:padding="@dimen/padding_general_fifteen"
+        android:text="@string/verify"
+        android:textColor="@color/white" />
 
-        <TextView
-            android:id="@+id/leadCallBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="@dimen/margin_general"
-            android:layout_marginTop="@dimen/margin_general_double"
-            android:layout_marginEnd="@dimen/margin_general"
-            android:drawablePadding="@dimen/padding_general"
-            android:gravity="center_vertical"
-            android:textColor="@color/black"
-            android:textSize="@dimen/font_size_twenty"
-            app:drawableEndCompat="@drawable/ic_telephone" />
-
-        <View
-            android:id="@+id/dividerLine"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_below="@+id/leadCallBtn"
-            android:layout_marginTop="@dimen/margin_general_double"
-            android:background="@color/grey" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/dividerLine"
-            android:layout_marginTop="@dimen/margin_general_double">
-
-            <TextView
-                android:id="@+id/callLogs"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawablePadding="@dimen/padding_general_half"
-                android:gravity="center"
-                android:text="@string/title_call_logs"
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_size_tweleve"
-                app:drawableTopCompat="@drawable/ic_history" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawablePadding="@dimen/padding_general_half"
-                android:gravity="center"
-                android:text="@string/title_auto_call"
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_size_tweleve"
-                android:visibility="gone"
-                app:drawableTopCompat="@drawable/ic_clock" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawablePadding="@dimen/padding_general_half"
-                android:gravity="center"
-                android:text="@string/title_task"
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_size_tweleve"
-                android:visibility="gone"
-                app:drawableTopCompat="@drawable/ic_notification" />
-
-            <TextView
-                android:id="@+id/logoutBtn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawablePadding="@dimen/padding_general_half"
-                android:gravity="center"
-                android:text="@string/title_log_out"
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_size_tweleve"
-                app:drawableTopCompat="@drawable/ic_logout" />
-
-        </LinearLayout>
-
-    </RelativeLayout>
-
-</RelativeLayout>
+</LinearLayout>
