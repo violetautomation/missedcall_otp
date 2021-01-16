@@ -39,12 +39,12 @@ class HomeActivity : AppCompatActivity() {
         verify.setOnClickListener {
             it.preventDoubleClick()
             if (isReadLogStetePermissionGranted(26)) {
-                missCallAlert()
+                missCallVerification()
             }
         }
     }
 
-    private fun missCallAlert() {
+    private fun missCallVerification() {
         ServiceData.callAlert(
             countryCode.text.toString().trim(),
             mobile.text.toString().trim()
@@ -74,7 +74,7 @@ class HomeActivity : AppCompatActivity() {
             26 -> {
                 if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     //open screen
-                    missCallAlert()
+                    missCallVerification()
                 } else {
                     // Permission Denied.
                 }

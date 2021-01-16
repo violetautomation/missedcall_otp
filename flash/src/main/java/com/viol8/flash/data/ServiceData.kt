@@ -22,7 +22,7 @@ object ServiceData : BaseRepository() {
         map["type"] = "missedcall"
         map["customer_info"] = ""
 
-        val request = RestClient.getApiService().callAgent(map)
+        val request = RestClient.getApiService().callAlert(map)
         request.loadApi {
             try {
                 var response: String? = null
@@ -51,7 +51,7 @@ object ServiceData : BaseRepository() {
         map["cli"] = cli
         map["call_time"] = today
 
-        val request = RestClient.getApiService().verifyOtp(map)
+        val request = RestClient.getApiService().verifyCall(map)
         request.loadApi {
             try {
                 var response: String? = null
