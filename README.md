@@ -24,15 +24,15 @@ allprojects
 3. How to Use:
 
 
-    class HomeActivity : AppCompatActivity() 
-        {
+        class HomeActivity : AppCompatActivity() 
+            {
             override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_home)
 
             initView()
             initListener()
-        }
+            }
 
         private fun initView() {
         val localBroadcastManager = LocalBroadcastManager.getInstance(this)
