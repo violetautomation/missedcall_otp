@@ -4,33 +4,28 @@
 
 allprojects 
 
-{
-	
-	repositories 
-	{
-			maven { url 'https://jitpack.io' }	
-		}
+    {
+	    repositories 
+	        {
+			    maven { url 'https://jitpack.io' }	
+	    	}
 	}
-  
+ 
   
 2. Add the dependency
 
-  dependencies 
-  
-  {
-  
-	        implementation 'com.github.vikramarora85:missedcall_otp:0.1.0'
-            
-	}
+
+        dependencies 
+            {
+                implementation 'com.github.vikramarora85:missedcall_otp:0.1.0'
+            }
   
   
 3. How to Use:
 
 
-class HomeActivity : AppCompatActivity() 
-
-{
-
+    class HomeActivity : AppCompatActivity() 
+    {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -98,4 +93,4 @@ class HomeActivity : AppCompatActivity()
         LocalBroadcastManager.getInstance(this).unregisterReceiver(onNotice)
         super.onDestroy()
     }
-}
+    }
