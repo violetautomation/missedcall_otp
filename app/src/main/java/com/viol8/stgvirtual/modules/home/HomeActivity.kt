@@ -6,7 +6,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.widget.Toast
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.viol8.flash.config.Constants
@@ -14,6 +14,8 @@ import com.viol8.flash.data.ServiceData
 import com.viol8.flash.isReadLogStetePermissionGranted
 import com.viol8.flash.preventDoubleClick
 import com.viol8.stgvirtual.R
+import com.viol8.stgvirtual.util.hideKeyboard
+import com.viol8.stgvirtual.util.snackbar
 import kotlinx.android.synthetic.main.activity_home.*
 
 
@@ -45,6 +47,8 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun missCallVerification() {
+        hideKeyboard(verify)
+        progress.visibility = View.VISIBLE
         ServiceData.callAlert(
             countryCode.text.toString().trim(),
             mobile.text.toString().trim()
@@ -56,8 +60,8 @@ class HomeActivity : AppCompatActivity() {
             ServiceData.verifyCall {
                 if (it) {
                     runOnUiThread {
-                        Toast.makeText(this@HomeActivity, "Number Verified!", Toast.LENGTH_SHORT)
-                            .show()
+                        progress.visibility = View.GONE
+                        snackbar("Number Verified!")
                     }
                 }
             }
