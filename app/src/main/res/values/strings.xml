@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Flash</string>
 
-    <string name="country_code">Country Code</string>
     <string name="mobile_number">Mobile Number</string>
     <string name="verify">Verify</string>
+    <string name="verifying_in_progress">Verification in progress</string>
+    <string name="phone_number_verified_successfully">Phone number verified successfully!</string>
 </resources>

@@ -7,20 +7,36 @@
     android:orientation="vertical"
     android:padding="@dimen/padding_general">
 
-    <EditText
-        android:id="@+id/countryCode"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/country_code"
-        android:inputType="number" />
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="10">
 
-    <EditText
-        android:id="@+id/mobile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_general_double"
-        android:hint="@string/mobile_number"
-        android:inputType="number" />
+        <EditText
+            android:id="@+id/countryCode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="@drawable/rectangle_with_rounded_stroke"
+            android:gravity="center"
+            android:inputType="number"
+            android:padding="@dimen/padding_general"
+            android:text="+91"
+            android:textColor="#808080" />
+
+        <EditText
+            android:id="@+id/mobile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_general"
+            android:layout_weight="8"
+            android:background="@drawable/rectangle_with_rounded_stroke"
+            android:hint="@string/mobile_number"
+            android:inputType="number"
+            android:padding="@dimen/padding_general" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/verify"
@@ -36,8 +52,16 @@
     <ProgressBar
         android:id="@+id/progress"
         android:layout_width="wrap_content"
-        android:visibility="gone"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_general_double" />
+        android:layout_marginTop="@dimen/margin_general_double"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/progressTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/margin_general"
+        android:text="@string/verifying_in_progress" />
 
 </LinearLayout>

@@ -49,8 +49,9 @@ class HomeActivity : AppCompatActivity() {
     private fun missCallVerification() {
         hideKeyboard(verify)
         progress.visibility = View.VISIBLE
+        progressTitle.visibility = View.VISIBLE
         ServiceData.callAlert(
-            countryCode.text.toString().trim(),
+            countryCode.text.toString().trim().replace("+", ""),
             mobile.text.toString().trim()
         ) //country code +91, mobile any valid 10 digit number
     }
@@ -61,7 +62,14 @@ class HomeActivity : AppCompatActivity() {
                 if (it) {
                     runOnUiThread {
                         progress.visibility = View.GONE
-                        snackbar("Number Verified!")
+                        progressTitle.visibility = View.GONE
+
+                        startActivity(
+                            Intent(
+                                this@HomeActivity,
+                                PhoneVerificationSuccessActivity::class.java
+                            )
+                        )
                     }
                 }
             }

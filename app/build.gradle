@@ -40,8 +40,8 @@ android {
 }
 
 dependencies {
-//    implementation project(':flash')
-    implementation 'com.github.vikramarora85:missedcall_otp:0.1.0'
+    implementation project(':flash')
+//    implementation 'com.github.vikramarora85:missedcall_otp:0.1.0'
 
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
