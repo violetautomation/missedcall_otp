@@ -17,7 +17,7 @@ allprojects
 
         dependencies 
             {
-                implementation 'com.github.vikramarora85:missedcall_otp:0.1.0'
+                implementation 'com.github.vikramarora85:missedcall_otp:0.1.1'
             }
   
   
