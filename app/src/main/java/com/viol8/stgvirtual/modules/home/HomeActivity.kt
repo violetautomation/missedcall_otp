@@ -15,7 +15,6 @@ import com.viol8.flash.isReadLogStetePermissionGranted
 import com.viol8.flash.preventDoubleClick
 import com.viol8.stgvirtual.R
 import com.viol8.stgvirtual.util.hideKeyboard
-import com.viol8.stgvirtual.util.snackbar
 import kotlinx.android.synthetic.main.activity_home.*
 
 
@@ -52,9 +51,12 @@ class HomeActivity : AppCompatActivity() {
         progressTitle.visibility = View.VISIBLE
         ServiceData.callAlert(
             countryCode.text.toString().trim().replace("+", ""),
-            mobile.text.toString().trim()
+            mobile.text.toString().trim(),
+            getString(R.string.api_key),
+            "50000"
         ) //country code +91, mobile any valid 10 digit number
     }
+
 
     private val onNotice: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {

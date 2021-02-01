@@ -17,7 +17,7 @@ allprojects
 
         dependencies 
             {
-                implementation 'com.github.vikramarora85:missedcall_otp:0.1.1'
+                implementation 'com.github.vikramarora85:missedcall_otp:0.1.2'
             }
   
   
@@ -53,7 +53,9 @@ allprojects
         private fun missCallVerification() {
             ServiceData.callAlert(
                  countryCode.text.toString().trim(),
-                 mobile.text.toString().trim()
+                 mobile.text.toString().trim(),
+                 getString(R.string.api_key),
+                             "userId"
                 ) //country code like 91, mobile any valid 10 digit number
           }
 
