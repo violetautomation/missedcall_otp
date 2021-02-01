@@ -13,14 +13,20 @@ object ServiceData : BaseRepository() {
     private var cli: String? = null
     private var uniqueId: String? = null
     private var mobile: String? = null
+    private var apiKey: String? = null
+    private var userId: String? = null
 
-    fun callAlert(countryCode: String?, mobile: String?) {
+    fun callAlert(countryCode: String?, mobile: String?, apiKey: String?, userId: String?) {
         this.mobile = mobile
+        this.apiKey = apiKey
+        this.userId = userId
         val map = HashMap<String, Any?>()
         map["mobile"] = mobile
         map["cc"] = countryCode
         map["type"] = "missedcall"
         map["customer_info"] = ""
+        map["apiKey"] = apiKey
+        map["userId"] = userId
 
         val request = RestClient.getApiService().callAlert(map)
         request.loadApi {
@@ -50,6 +56,8 @@ object ServiceData : BaseRepository() {
         map["unique_id"] = uniqueId
         map["cli"] = cli
         map["call_time"] = today
+        map["apiKey"] = apiKey
+        map["userId"] = userId
 
         val request = RestClient.getApiService().verifyCall(map)
         request.loadApi {
