@@ -17,7 +17,7 @@ allprojects
 
         dependencies 
             {
-                implementation 'com.github.vikramarora85:missedcall_otp:0.1.2'
+                implementation 'com.github.violetautomation:missedcall_otp:0.1.0'
             }
   
   
@@ -56,7 +56,7 @@ allprojects
                  mobile.text.toString().trim(),
                  getString(R.string.api_key),
                              "userId"
-                ) //country code like 91, mobile any valid 10 digit number
+                ) //country code like 880, mobile any valid 10 digit number
           }
 
         private val onNotice: BroadcastReceiver = object : BroadcastReceiver() {
