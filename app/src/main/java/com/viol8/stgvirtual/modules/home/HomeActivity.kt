@@ -54,7 +54,7 @@ class HomeActivity : AppCompatActivity() {
             mobile.text.toString().trim(),
             getString(R.string.api_key),
             "50000"
-        ) //country code +91, mobile any valid 10 digit number
+        ) //country code +880, mobile any valid 10 digit number
     }
 
 

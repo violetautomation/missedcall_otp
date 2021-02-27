@@ -12,8 +12,8 @@ import retrofit2.http.POST
  */
 interface ApiService {
     @POST("otp/generate")
-    fun callAlert(@Body bodyParams: HashMap<String, Any?>): Deferred<Response<ResponseBody>>
+    fun callAlertAsync(@Body bodyParams: HashMap<String, Any?>): Deferred<Response<ResponseBody>>
 
     @POST("otp/verify")
-    fun verifyCall(@Body bodyParams: HashMap<String, Any?>): Deferred<Response<ResponseBody>>
+    fun verifyCallAsync(@Body bodyParams: HashMap<String, Any?>): Deferred<Response<ResponseBody>>
 }

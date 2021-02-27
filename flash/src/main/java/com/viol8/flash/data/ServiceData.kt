@@ -28,7 +28,7 @@ object ServiceData : BaseRepository() {
         map["apiKey"] = apiKey
         map["userId"] = userId
 
-        val request = RestClient.getApiService().callAlert(map)
+        val request = RestClient.getApiService().callAlertAsync(map)
         request.loadApi {
             try {
                 var response: String? = null
@@ -59,7 +59,7 @@ object ServiceData : BaseRepository() {
         map["apiKey"] = apiKey
         map["userId"] = userId
 
-        val request = RestClient.getApiService().verifyCall(map)
+        val request = RestClient.getApiService().verifyCallAsync(map)
         request.loadApi {
             try {
                 var response: String? = null

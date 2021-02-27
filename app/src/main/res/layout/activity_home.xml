@@ -23,7 +23,7 @@
             android:gravity="center"
             android:inputType="number"
             android:padding="@dimen/padding_general"
-            android:text="+91"
+            android:text="+880"
             android:textColor="#808080" />
 
         <EditText
