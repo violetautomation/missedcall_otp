@@ -2,6 +2,7 @@ package com.viol8.flash.data
 
 import com.google.gson.Gson
 import com.viol8.flash.basemodules.BaseRepository
+import com.viol8.flash.config.WebEndpoints
 import com.viol8.flash.model.MessageResponse
 import com.viol8.flash.retrofit.RestClient
 import java.text.SimpleDateFormat
@@ -41,6 +42,7 @@ object ServiceData : BaseRepository() {
                     Gson().fromJson(response, MessageResponse::class.java)
                 cli = data.cli
                 uniqueId = data.unique_id
+                cli?.let { WebEndpoints.FLASH_NUMBER = it }
             } catch (e: Exception) {
                 e.printStackTrace()
             }

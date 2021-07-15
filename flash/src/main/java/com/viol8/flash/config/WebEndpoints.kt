@@ -2,7 +2,7 @@ package com.viol8.flash.config
 
 object WebEndpoints {
     val IS_LOG_REQUIRED = true
-    val FLASH_NUMBER = "+911724155580"
+    var FLASH_NUMBER = ""
 
     //staging url
 //    val BASE_URL = "http://stgvirtualapi.viol8.com/"
