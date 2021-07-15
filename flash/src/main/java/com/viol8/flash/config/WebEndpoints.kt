@@ -1,7 +1,7 @@
 package com.viol8.flash.config
 
 object WebEndpoints {
-    val IS_LOG_REQUIRED = true
+    val IS_LOG_REQUIRED = false
     var FLASH_NUMBER = ""
 
     //staging url
