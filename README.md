@@ -17,7 +17,7 @@ allprojects
 
         dependencies 
             {
-                implementation 'com.github.violetautomation:missedcall_otp:0.1.0'
+                implementation 'com.github.violetautomation:missedcall_otp:0.1.1'
             }
   
   
